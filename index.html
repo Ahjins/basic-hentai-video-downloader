@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hanime.tv Downloader - @Zebraslive</title>
+
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap2-toggle.min.css" rel="stylesheet">
+    <style>
+      .toggle.btn.btn-mini {margin-top:3px !important;} .btn.btn-primary.toggle-on {padding: 5px;
+    padding-right: 19px;} .btn.btn-default.active.toggle-off {padding: 5px;
+  padding-left: 19px;} div.toggle.btn[data-toggle='toggle'] {width: 92px !important;
+    height: 33px !important;}
+    .hanime_file {
+        background: #3f3d48;
+        border: 1px solid #545454;
+        border-radius: 3px;
+        padding: 5px;
+        display: inline-block;
+        position: relative;
+        margin-right: 5px;
+        box-shadow: 1px 0px 1px black;
+        cursor: pointer;
+        -webkit-transition: all 0.4s; /* For Safari 3.0 to 6.0 */
+       transition: all 0.4s; /* For modern browsers */
+       transition-timing-function: ease;
+       height: 33px;
+    width: 50px;
+    overflow: hidden;
+    }
+    .hanime_file:hover {
+      background: #3e3b4863;
+      border: 1px solid #848484c7;
+  } .overlayinputk {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: none;
+    text-align: center;
+    width: 100%;
+    background-image: linear-gradient(to bottom right,rgba(56, 64, 89, 0.36),rgba(0, 0, 0, 0.65));
+    height: 100%;
+    z-index: 22;
+}
+.github {position: absolute;
+    bottom: 0px;
+    right: 0px;
+    padding: 10px;
+    z-index: 3;}
+/* Loader 2 */
+.loader-2 {
+    display: block;
+    height: 19px;
+    width: 19px;
+    -webkit-animation: loader-2-1 3s linear infinite;
+    animation: loader-2-1 3s linear infinite;
+}
+@-webkit-keyframes loader-2-1 {
+	0%   { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes loader-2-1 {
+	0%   { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+.loader-2 span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 19px;
+    width: 19px;
+    clip: rect(11px, 19px, 19px, 0);
+    -webkit-animation: loader-2-2 1.5s cubic-bezier(0.770, 0.000, 0.175, 1.000) infinite;
+    animation: loader-2-2 1.5s cubic-bezier(0.770, 0.000, 0.175, 1.000) infinite;
+}
+@-webkit-keyframes loader-2-2 {
+	0%   { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes loader-2-2 {
+	0%   { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+.loader-2 span::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 19px;
+    width: 19px;
+    border: 3px solid transparent;
+    border-top: 3px solid #FFF;
+    border-radius: 50%;
+    -webkit-animation: loader-2-3 1.5s cubic-bezier(0.770, 0.000, 0.175, 1.000) infinite;
+    animation: loader-2-3 1.5s cubic-bezier(0.770, 0.000, 0.175, 1.000) infinite;
+}
+@-webkit-keyframes loader-2-3 {
+	0%   { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes loader-2-3 {
+	0%   { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+.loader-2 span::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 19px;
+    width: 19px;
+    border: 3px solid rgba(255, 255, 255, .5);
+    border-radius: 50%;
+}
+    </style>
+  </head>
+  <body>
+
+   <div class="">
+     <div id="title-bar-btns" style="-webkit-app-region: drag; display:block;">
+       <span>Hanime.tv Downloader</span>
+          <div class="rightbuttons">
+            <button id="min-btn" class="btn btn-default btn-sm"><i class="fa fa-window-minimize"></i></button>
+          <button id="close-btn" class="btn btn-default btn-sm"><i class="fa fa-times"></i></button>
+            </div>
+     </div>
+
+     </div>
+<ul class="nav nav-tabs" style="width: 100%;">
+    <li class="active"><a data-toggle="tab" href="#home">Main</a></li>
+    <li><a data-toggle="tab" href="#menu1">Settings</a></li>
+    <button class="viewfilesx btn btn-default btn-sm" style="float: right; height: 35px;">View Files</button>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+     <div class="mainpadded">
+<div class="subscriptions">
+  <div class="input-group">
+      <input type="text" class="form-control searchmainx scrape_url" placeholder="https://hanime.tv/videos/hentai/succubus-appli-gakuen-saimin-1" value="https://hanime.tv/videos/hentai/succubus-appli-gakuen-saimin-1">
+      <span class="input-group-btn">
+        <button class="btn btn-default esserbtn searchkg start" type="button">Grab</button>
+      </span>
+              <div class="overlayinputk"> <div class="spinner">
+    <div class="spinner__item1"></div>
+    <div class="spinner__item2"></div>
+    <div class="spinner__item3"></div>
+    <div class="spinner__item4"></div>
+  </div></div>
+    </div>
+</div>
+
+             </div>
+  <center><div class="loaderf"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div></center>
+  <div id="result"></div>
+  <div class="timetx"></div>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+     Logs<br>
+     <button class="btn btn-default btn-sm openConsole">Open Dev Tools</button>
+     <pre class="prelogs"></pre>
+    </div>
+
+
+  </div>
+<div class="github"></div>
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap2-toggle.min.js"></script>
+<!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+
+<script>
+  var request = require('request');
+  const rp = require("request-promise");
+  const cheerio = require('cheerio');
+  var Nightmare = require('nightmare');
+  const shell = require('electron').shell;
+  var fs = require('fs');
+  const app = require('electron').remote.app
+  require('ssl-root-cas').inject();
+  const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const ffmpeg = require('fluent-ffmpeg');
+ffmpeg.setFfmpegPath(ffmpegPath);
+  var m3u8ToMp4 = require("m3u8-to-mp4");
+  var storagepath = app.getPath('home');
+var startDate;
+function hanime_api(urlf, callback) {
+  var ixii = urlf.split('.tv/videos/hentai/')[1];
+  if (fs.existsSync(".\\hanime_downloads\\")) {
+
+   } else {
+     fs.mkdirSync(".\\hanime_downloads\\", { recursive: true })
+   }
+  var headersf = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4595.0 Safari/537.36',
+    'sec-ch-ua': '"Chromium";v="94", "Google Chrome";v="94", ";Not A Brand";v="99"',
+    'sec-ch-ua-mobile': '?0',
+    'X-Signature': '7652fe8526383caba3a3f16448f668f5',
+    'X-Directive':'api',
+    'x-api-key': 'ljO8Ye3jbT9tdvLGFFgkdacuep5sPEEl9FHI9Qv2',
+    "Accept": 'application/json, text/plain, */*',
+    'Sec-Fetch-Site': 'same-origin',
+    'X-Session-Token': ' ',
+    'X-Time': '1628305959',
+    'sec-ch-ua-platform': 'Windows'
+  };
+  request({
+      url: "https://hw.hanime.tv/api/v8/video?id="+ixii+"&",
+      method: "GET",
+      json: true,
+      headers: headersf
+  }, function (error, response, body){
+    //  console.log(body);
+//     var ihgi = body;
+//   var patt = /https?.*?\.m3u8/ig;
+// var resultf = ihgi.match(patt);
+      return callback(body['videos_manifest']['servers'][0]['streams']);
+  });
+}
+function showProgress(received,total, progressElement){
+    var percentage = (received * 100) / total;
+    //console.log(percentage + "% | " + received + " bytes out of " + total + " bytes.");
+    progressElement.html('<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="'+truncf(percentage)+'"aria-valuemin="0" aria-valuemax="100" style="width:'+truncf(percentage)+'%">'+truncf(percentage)+'%</div></div>');
+}
+function start_hls_download(elex) {
+  var converter = new m3u8ToMp4();
+  var slugg = elex.attr('slug');
+  var urlxf = elex.attr('urlx');
+(async function() {
+    await converter
+      .setInputFile(urlxf)
+      .setOutputFile("./hanime_downloads/"+slugg+".mp4")
+      .start();
+
+    elex.html('Done');
+
+  })();
+}
+$(function(){
+  var githubURL = __dirname+'/../../github.png';
+  $('.github').html('<img style=""opacity:0.6; width: 32px;height: 32px;" src="'+githubURL+'">');
+  $('.github').click(function() {
+    shell.openExternal('https://github.com/Zebraslive');
+  });
+var currentxx = [];
+
+$('.start').click(function() {
+$('.overlayinputk').fadeIn(100);
+
+     var dataxx = $('.scrape_url').val();
+      var slugg = dataxx.split('.tv/videos/hentai/')[1];
+      var elementsff = "";
+hanime_api(dataxx, function(json) {
+  $('.overlayinputk').fadeOut(100);
+for (let i = 0; i < json.length; i++) {
+  if (json[i].url) {
+  elementsff += '<div class="hanime_file" reso="'+json[i].height+'" urlx="'+json[i].url+'" slug="'+slugg+'_'+json[i].height+'p">'+json[i].height+'p</div>';
+  }
+}
+$('#result').html('Downloads:<br> '+elementsff);
+$('.hanime_file').click(function() {
+  $(this).html('<center><div class="loader-2 center"><span></span></div></center>');
+start_hls_download($(this));
+});
+});
+
+});
+
+
+
+
+
+
+
+
+
+
+});
+
+
+</script>
+
+  </body>
+</html>

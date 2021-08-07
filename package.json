@@ -1,0 +1,36 @@
+{
+  "name": "Hentai-Video-Downloader",
+  "productName": "Hentai-Video-Downloader",
+  "description": "Hentai Video Downloader",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "Zebraslive",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "dependencies": {
+    "request": "*",
+    "cheerio": "*",
+    "@ffmpeg-installer/ffmpeg": "*",
+    "fluent-ffmpeg": "*",
+    "m3u8-to-mp4": "*",
+    "request-promise": "*",
+    "nightmare": "*",
+    "ssl-root-cas": "*",
+    "sliced": "*"
+  },
+  "devDependencies": {
+    "electron": "9.0.2",
+    "@electron-forge/cli": "^6.0.0-beta.59",
+    "@electron-forge/maker-deb": "^6.0.0-beta.59",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.59",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.59",
+    "@electron-forge/maker-zip": "^6.0.0-beta.59"
+  },
+  "config": {}
+}
