@@ -1,5 +1,5 @@
 # basic-hentai-downloader
-A simple hentai video downloader. 
+A simple hentai video downloader. Windows Electron App
 
 ![alt text](https://i.imgur.com/ksG9Vi5.gif)
 
