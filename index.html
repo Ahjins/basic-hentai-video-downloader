@@ -168,9 +168,12 @@
   <div class="timetx"></div>
     </div>
     <div id="menu1" class="tab-pane fade">
-     Logs<br>
+    <div class="fiixinput" style="background: #1313132b;">
+    <span style="vertical-align: middle;  margin-right: 5px; margin-left: 5px;">Auto download next random video: </span>
+  <input type="checkbox" data-toggle="toggle" data-on="on" data-off="off" class="cfpeggg" data-width="66">
+    <span style="vertical-align: middle;  margin-right: 5px;margin-left: 5px;font-size: 12px;color: #b3b3b3;">(starts after first manual download)</span>
+    </div>
      <button class="btn btn-default btn-sm openConsole">Open Dev Tools</button>
-     <pre class="prelogs"></pre>
     </div>
 
 
@@ -193,6 +196,8 @@
   const cheerio = require('cheerio');
   var Nightmare = require('nightmare');
   const shell = require('electron').shell;
+const Store = require('electron-store');
+const store = new Store();
   var fs = require('fs');
   const app = require('electron').remote.app
   require('ssl-root-cas').inject();
@@ -204,10 +209,12 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 var startDate;
 function hanime_api(urlf, callback) {
   var ixii = urlf.split('.tv/videos/hentai/')[1];
-  if (fs.existsSync(".\\hanime_downloads\\")) {
+  var folderxx = ixii.split('-'); folderxx.pop();
+  var folderslug = folderxx.join('-');
+  if (fs.existsSync(".\\hanime_downloads\\"+folderslug)) {
 
    } else {
-     fs.mkdirSync(".\\hanime_downloads\\", { recursive: true })
+     fs.mkdirSync(".\\hanime_downloads\\"+folderslug, { recursive: true })
    }
   var headersf = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4595.0 Safari/537.36',
@@ -232,26 +239,62 @@ function hanime_api(urlf, callback) {
 //     var ihgi = body;
 //   var patt = /https?.*?\.m3u8/ig;
 // var resultf = ihgi.match(patt);
-      return callback(body['videos_manifest']['servers'][0]['streams']);
+      return callback(body['videos_manifest']['servers'][0]['streams'], body['next_random_hentai_video']['slug']);
   });
 }
-function showProgress(received,total, progressElement){
-    var percentage = (received * 100) / total;
-    //console.log(percentage + "% | " + received + " bytes out of " + total + " bytes.");
-    progressElement.html('<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="'+truncf(percentage)+'"aria-valuemin="0" aria-valuemax="100" style="width:'+truncf(percentage)+'%">'+truncf(percentage)+'%</div></div>');
-}
+var slugg;
 function start_hls_download(elex) {
   var converter = new m3u8ToMp4();
-  var slugg = elex.attr('slug');
+  var sluggf = elex.attr('slug');
+  var bslug = elex.attr('bslug');
   var urlxf = elex.attr('urlx');
+  var nextf = elex.attr('nextk');
+  var oxiigs = nextf.split('.tv/videos/hentai/')[1]; //next random video slug
+  var folderxfx = bslug.split('-'); folderxfx.pop();
+  var folderslzufg = folderxfx.join('-');
+  var folderxfxnewxt = oxiigs.split('-'); folderxfxnewxt.pop();
+  var folderslzufgnext = folderxfxnewxt.join('-');
 (async function() {
-    await converter
+  if (window.series_downloaded.includes(sluggf)) {
+      console.log('skipping '+sluggf+', already downloaded');
+    } else {
+      await converter
       .setInputFile(urlxf)
-      .setOutputFile("./hanime_downloads/"+slugg+".mp4")
+      .setOutputFile("./hanime_downloads/"+folderslzufg+"/"+sluggf+".mp4")
       .start();
+    }
 
     elex.html('Done');
+    if (window.series_downloaded.includes(sluggf)) {
 
+    } else {
+window.series_downloaded.push(sluggf);
+    store.set('downloaded_series', window.series_downloaded);
+    }
+    if ($('.cfpeggg').prop('checked')) { //auto download next random video.
+      if (fs.existsSync(".\\hanime_downloads\\"+folderslzufg)) {
+
+       } else {
+         fs.mkdirSync(".\\hanime_downloads\\"+folderslzufg, { recursive: true })
+       }
+      hanime_api(nextf, function(json, nextslug) {
+        $('.overlayinputk').fadeOut(100);
+        var elementsff = "";
+      for (let i = 0; i < json.length; i++) {
+        if (json[i].url) {
+        elementsff += '<div class="hanime_file" reso="'+json[i].height+'" nextk="https://hanime.tv/videos/hentai/'+nextslug+'" urlx="'+json[i].url+'" bslug="'+oxiigs+'" slug="'+oxiigs+'_'+json[i].height+'p">'+json[i].height+'p</div>';
+        }
+      }
+      $('#result').html('Auto Downloading '+oxiigs+':<br> '+elementsff);
+      $('.hanime_file').click(function() {
+        $(this).html('<center><div class="loader-2 center"><span></span></div></center>');
+      start_hls_download($(this));
+      });
+      $('.hanime_file').eq(0).click(); //auto click best quality.
+      });
+    } else {
+
+    }
   })();
 }
 $(function(){
@@ -266,13 +309,14 @@ $('.start').click(function() {
 $('.overlayinputk').fadeIn(100);
 
      var dataxx = $('.scrape_url').val();
-      var slugg = dataxx.split('.tv/videos/hentai/')[1];
+      window.slugg = dataxx.split('.tv/videos/hentai/')[1];
       var elementsff = "";
-hanime_api(dataxx, function(json) {
+hanime_api(dataxx, function(json, nextslug) {
   $('.overlayinputk').fadeOut(100);
+  var elementsff = "";
 for (let i = 0; i < json.length; i++) {
   if (json[i].url) {
-  elementsff += '<div class="hanime_file" reso="'+json[i].height+'" urlx="'+json[i].url+'" slug="'+slugg+'_'+json[i].height+'p">'+json[i].height+'p</div>';
+  elementsff += '<div class="hanime_file" reso="'+json[i].height+'" nextk="https://hanime.tv/videos/hentai/'+nextslug+'" urlx="'+json[i].url+'" bslug="'+window.slugg+'" slug="'+window.slugg+'_'+json[i].height+'p">'+json[i].height+'p</div>';
   }
 }
 $('#result').html('Downloads:<br> '+elementsff);

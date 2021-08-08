@@ -9,6 +9,7 @@ const ffmpeg = require('fluent-ffmpeg');
  var m3u8ToMp4 = require("m3u8-to-mp4");
  const rp = require("request-promise");
  var Nightmare = require('nightmare');
+const Store = require('electron-store');
  require('ssl-root-cas').inject();
 
 function createWindow () {
@@ -17,6 +18,7 @@ function createWindow () {
     width: 715,
     height: 315,
     setOpacity: 0.9,
+ resizable: false,
     transparent: true, frame: false,
     vibrancy: 'ultra-dark',
     webPreferences: {

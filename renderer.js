@@ -13,6 +13,8 @@ const ffmpeg = require('fluent-ffmpeg');
 const rp = require("request-promise");
   var m3u8ToMp4 = require("m3u8-to-mp4");
 const {shell} = require('electron') // deconstructing assignment
+const Store = require('electron-store');
+const store = new Store();
 const path = require('path');
 var fs = require('fs');
 require('ssl-root-cas').inject();
@@ -28,7 +30,8 @@ $('.viewfilesx').click(function() {
   shell.openExternal('file://' + __dirname+'\\..\\..\\hanime_downloads\\');
 
 });
-
+var series_downloaded;
+window.series_downloaded = (typeof store.get('downloaded_series') !== 'undefined') ? store.get('downloaded_series') : [];
 
 
 

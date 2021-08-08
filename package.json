@@ -1,7 +1,7 @@
 {
-  "name": "Hentai-Video-Downloader",
-  "productName": "Hentai-Video-Downloader",
-  "description": "Hentai Video Downloader",
+  "name": "Hanime.tv Downloader",
+  "productName": "Hanime.tv-Downloader",
+  "description": "Hanime.tv Downloader",
   "keywords": [],
   "main": "./main.js",
   "version": "1.0.0",
@@ -14,15 +14,16 @@
     "lint": "echo \"No linting configured\""
   },
   "dependencies": {
-    "request": "*",
-    "cheerio": "*",
     "@ffmpeg-installer/ffmpeg": "*",
+    "cheerio": "*",
+    "electron-store": "^6.0.1",
     "fluent-ffmpeg": "*",
     "m3u8-to-mp4": "*",
-    "request-promise": "*",
     "nightmare": "*",
-    "ssl-root-cas": "*",
-    "sliced": "*"
+    "request": "*",
+    "request-promise": "*",
+    "sliced": "*",
+    "ssl-root-cas": "*"
   },
   "devDependencies": {
     "electron": "9.0.2",
