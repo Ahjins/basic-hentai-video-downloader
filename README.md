@@ -15,4 +15,5 @@ optional random video auto downloader
 
 ![alt text](https://i.imgur.com/x9xBp9r.gif)
 
-I'll be making a mass downloader with premium 1080p support soon.
+When using the auto download function, just leave running and it will download in the best quality. Downloads only unique videos that you haven't downloaded yet.
+To turn off the auto downloader, just switch it back off in the settings page. After doing so, it will stop after the current download completes.
