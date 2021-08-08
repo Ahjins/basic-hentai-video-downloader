@@ -15,5 +15,5 @@ optional random video auto downloader
 
 ![alt text](https://i.imgur.com/x9xBp9r.gif)
 
-When using the auto download function, just leave running and it will download in the best quality. Downloads only unique videos that you haven't downloaded yet.
+When using the auto download function, just leave running and it will download random hentai in the best quality. it downloads unique videos that you haven't downloaded yet.
 To turn off the auto downloader, just switch it back off in the settings page. After doing so, it will stop after the current download completes.
