@@ -1,7 +1,7 @@
 # basic-hentai-downloader
 A simple hentai video downloader. Windows Electron App
 
-Download link https://github.com/Zebraslive/basic-hentai-downloader/releases/download/1.0/Hentai_downloader.zip
+Download link https://github.com/Zebraslive/basic-hentai-video-downloader/releases/download/1.0.2/hentai_downloader_1.0.2.zip
 
 ![alt text](https://i.imgur.com/ksG9Vi5.gif)
 
